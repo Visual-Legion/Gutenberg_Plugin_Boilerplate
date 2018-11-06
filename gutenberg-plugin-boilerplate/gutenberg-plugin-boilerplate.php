@@ -200,6 +200,11 @@ function vl_gpb_pagination_bar( $custom_query ) {
     }
 }
 
+/**
+* Rest API
+*/
+require_once 'vl_gpb_rest_endpoints.php'; 
+
 
 /**
 * Settings Page
@@ -245,7 +250,7 @@ function vl_gpb_my_register_main() {
   );  
   
   // Enqueue the script in the editor
-  register_block_type('gbp/main', array( 
+  register_block_type('vl-gpg/main', array( 
   	// 'render_callback' => 'vl_blocks_main_callback',
     'editor_script' => 'vl-gpb-js',
     'editor_style' => 'vl-gpb-edit-style',
@@ -257,11 +262,11 @@ add_action('init', 'vl_gpb_my_register_main');
 
 
 /**
-/* Main block 
+/* CPT Editor block 
 */
 
 // To create if php render is necessary
-//require_once 'php-renders/gutenberg-plugin-boilerplate-render.php';
+//require_once 'php-renders/gpb-editor-render.php';
 
 function vl_gpb_my_register_editor() {
 
@@ -273,11 +278,11 @@ function vl_gpb_my_register_editor() {
   );
 
   // Adding settings value from db to block js
-  if (isset(get_option('vl_gpb_options')['vl_gpb_api_key'])) {
-    wp_localize_script( 'vl-gpb-editor-js', 'api_key', get_option('vl_gpb_options')['vl_gpb_api_key'] );
-  } else {
-    wp_localize_script( 'vl-gpb-editor-js', 'api_key', null );
-  }
+  // if (isset(get_option('vl_gpb_options')['vl_gpb_api_key'])) {
+  //   wp_localize_script( 'vl-gpb-editor-js', 'api_key', get_option('vl_gpb_options')['vl_gpb_api_key'] );
+  // } else {
+  //   wp_localize_script( 'vl-gpb-editor-js', 'api_key', null );
+  // }
 
   // Register our block's base CSS  
   wp_register_style(
@@ -294,7 +299,7 @@ function vl_gpb_my_register_editor() {
   );  
   
   // Enqueue the script in the editor
-  register_block_type('gbp/editor', array( 
+  register_block_type('vl-gpg/editor', array( 
     // 'render_callback' => 'vl_blocks_editor_callback',
     'editor_script' => 'vl-gpb-editor-js',
     'editor_style' => 'vl-gpb-editor-edit-style',
@@ -303,6 +308,54 @@ function vl_gpb_my_register_editor() {
 }
 
 add_action('init', 'vl_gpb_my_register_editor');
+
+/**
+/* CPT Page block 
+*/
+
+// To create if php render is necessary
+//require_once 'php-renders/gpb-editor-render.php';
+
+function vl_gpb_my_register_page() {
+
+  // Register our block script with WordPress
+  wp_register_script(
+    'vl-gpb-page-js',
+    plugins_url('/blocks/dist/blocks.build.js', __FILE__),
+    array('wp-blocks', 'wp-element')
+  );
+
+  // Adding settings value from db to block js
+  // if (isset(get_option('vl_gpb_options')['vl_gpb_api_key'])) {
+  //   wp_localize_script( 'vl-gpb-page-js', 'api_key', get_option('vl_gpb_options')['vl_gpb_api_key'] );
+  // } else {
+  //   wp_localize_script( 'vl-gpb-page-js', 'api_key', null );
+  // }
+
+  // Register our block's base CSS  
+  wp_register_style(
+    'vl-gpb-page-style',
+    plugins_url( '/blocks/dist/blocks.style.build.css', __FILE__ ),
+    array( 'wp-blocks' )
+  );
+  
+  // Register our block's page-specific CSS
+  wp_register_style(
+    'vl-gpb-page-edit-style',
+    plugins_url('/blocks/dist/blocks.page.build.css', __FILE__),
+    array( 'wp-edit-blocks' )
+  );  
+  
+  // Enqueue the script in the page
+  register_block_type('vl-gpg/page', array( 
+    // 'render_callback' => 'vl_blocks_page_callback',
+    'page_script' => 'vl-gpb-page-js',
+    'page_style' => 'vl-gpb-page-edit-style',
+    'style' => 'vl-gpb-page-style'
+  ));
+}
+
+add_action('init', 'vl_gpb_my_register_page');
 
 function run_gutenberg_plugin_boilerplate() {
 
