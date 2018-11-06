@@ -12,35 +12,7 @@ This plugin makes is a boilerplate to develop gutenberg plugins
 
 == Description ==
 
-	Todo  
-		Command line to automise this
-		Multilingual
 
-	Readme
-		Once setup, remove this description from the plugins readme and replace with your plugin description
-
-	CPT
-	If CPT not needed
-		Ignore admin and public folders
-		Comment out CPT registration function + editor and page block registration
-	Rename	
-			vl_gpb_cpt_example
-			GPB CPT
-			single / archive file names and content
-
-	Renaming 
-		Gutenberg_Plugin_Boilerplate
-		gutenberg-plugin-boilerplate + block folder names + main php file names
-		vl_gpb
-		vl-gpb
-		gutenberg_plugin_boilerplate
-		Gutenberg Plugin Boilerplate 
-		GUTENBERG_PLUGIN_BOILERPLATE
-		
-	Settings
-		If needed, uncomment include settings.php
-		Change name of settings page, maybe where it is located, and the stored values
-		If needed in block, uncomment wp_localize_script
 
 
 
