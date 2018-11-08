@@ -30,7 +30,6 @@ const {Button} = wp.components;
  *                             registered; otherwise `undefined`.
  */
 
-// Inspired by https://codepen.io/abergin/pen/ihlDf
 registerBlockType('vl-gpb/main', {
 	// Block name. Block names must be string that contains a namespace prefix. Example: my-plugin/my-custom-block.
 	title: __('VL Gutenberg Plugin Boilerplate '), // Block title.
