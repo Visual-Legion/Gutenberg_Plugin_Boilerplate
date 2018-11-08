@@ -86,7 +86,7 @@ find ${nameLowercaseDash} \( -type d -o -type f \) -name "*vl-gpb*" | while read
 done
 
 find ${nameLowercaseDash} \( -type d -o -type f \) -name "*vl_gpb*" | while read -r file; do
-    mv "$file" "${file//vl-gpb/${prefixDashed}}"
+    mv "$file" "${file//vl_gpb/${prefixUnderscore}}"
 done
 
 
